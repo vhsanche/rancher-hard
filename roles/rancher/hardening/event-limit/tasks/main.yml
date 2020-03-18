@@ -1,0 +1,27 @@
+---
+- name: Create /opt/kubernetes folder
+  become: yes
+  file:
+    path: /opt/kubernetes
+    state: directory
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Populate admission.yaml
+  become: yes
+  copy: 
+    src: admission.yaml
+    dest: /opt/kubernetes/admission.yaml
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Populate event.yaml
+  become: yes
+  copy: 
+    src: event.yaml
+    dest: /opt/kubernetes/event.yaml
+    owner: root
+    group: root
+    mode: '0600'

@@ -1,0 +1,22 @@
+---
+- name: Ensure group etcd exists
+  become: yes
+  group:
+    name: etcd
+    gid: 1039
+    state: present
+
+- name: Add the user 'etcd'
+  become: yes
+  user:
+    name: etcd
+    uid: 1040
+    group: etcd
+
+- name: Create /var/lib/rancher/etcd folder
+  become: yes
+  file:
+    path: /var/lib/rancher/etcd
+    state: directory
+    owner: etcd
+    group: etcd

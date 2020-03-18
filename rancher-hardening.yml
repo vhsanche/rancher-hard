@@ -1,0 +1,7 @@
+- hosts: test
+  roles:
+    - rancher/hardening/sysctl
+    - rancher/hardening/encryption-provider
+    - rancher/hardening/audit-log
+    - rancher/hardening/event-limit
+    - rancher/hardening/etcd

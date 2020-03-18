@@ -1,0 +1,14 @@
+---
+- name: Add sysctl entries
+  become: yes
+  blockinfile:
+    path: /etc/sysctl.conf
+    insertafter: EOF
+    block: |
+      vm.overcommit_memory=1
+      kernel.panic=10
+      kernel.panic_on_oops=1
+
+- name: Reload sysctl
+  become: yes
+  shell: sysctl -p

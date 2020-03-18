@@ -1,0 +1,18 @@
+---
+- name: Create /opt/kubernetes folder
+  become: yes
+  file:
+    path: /opt/kubernetes
+    state: directory
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Populate audit.yaml
+  become: yes
+  copy: 
+    src: audit.yaml
+    dest: /opt/kubernetes/audit.yaml
+    owner: root
+    group: root
+    mode: '0600'

@@ -1,0 +1,22 @@
+---
+- name: Generate a key
+  shell: head -c 32 /dev/urandom | base64 -i -
+  register: key
+
+- name: Create /opt/kubernetes folder
+  become: yes
+  file:
+    path: /opt/kubernetes
+    state: directory
+    owner: root
+    group: root
+    mode: '0600'
+
+- name: Populate encryption.yaml
+  become: yes
+  template: 
+    src: encryption.yaml
+    dest: /opt/kubernetes/encryption.yaml
+    owner: root
+    group: root
+    mode: '0600'
